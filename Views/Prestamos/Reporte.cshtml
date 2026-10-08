@@ -1,0 +1,40 @@
+@model IEnumerable<PrestamoReporte>
+@{ ViewData["Title"] = "Reporte de préstamos"; }
+
+<h1>Reporte de préstamos</h1>
+
+<form method="get" class="row g-2 mb-3">
+    <div class="col-auto">
+        <label class="form-label" for="desde">Desde</label>
+        <input type="date" id="desde" name="desde" value="@ViewData["Desde"]" class="form-control" />
+    </div>
+    <div class="col-auto">
+        <label class="form-label" for="hasta">Hasta</label>
+        <input type="date" id="hasta" name="hasta" value="@ViewData["Hasta"]" class="form-control" />
+    </div>
+    <div class="col-auto align-self-end">
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr><th>Socio</th><th>Libros</th><th>Fecha límite</th><th>Estado</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.Socio</td>
+                <td>@p.Libros</td>
+                <td>@p.FechaLimite.ToString("dd/MM/yyyy")</td>
+                <td>@p.Estado</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (!Model.Any())
+{
+    <p class="text-muted">No hay préstamos en el rango seleccionado.</p>
+}

@@ -1,0 +1,15 @@
+@model IEnumerable<Socio>
+@{ ViewData["Title"] = "Socios"; }
+
+<h1>Socios</h1>
+<a asp-action="Create" class="btn btn-success mb-3">Nuevo socio</a>
+
+<table class="table table-striped">
+    <thead><tr><th>Nombre</th><th>DNI</th></tr></thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr><td>@s.Nombre</td><td>@s.Dni</td></tr>
+        }
+    </tbody>
+</table>
